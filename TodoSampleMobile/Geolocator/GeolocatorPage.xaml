@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoSampleMobile.Geolocator.GeolocatorPage"
+             Title="Geolocator" >
+    <StackLayout>
+        <Button Command="{Binding StartListeningCommand}" Text="Start Listening" />
+        <Button Command="{Binding GetPositionCommand}" Text="Get Position" />
+        <Entry Text="{Binding PositionStatus}" />
+        <Entry Text="{Binding PositionLatitude}" />
+        <Entry Text="{Binding PositionLongitude}" />
+
+        <Button Command="{Binding StopListeningCommand}" Text="Stop Listening" />
+    </StackLayout>
+</ContentPage>

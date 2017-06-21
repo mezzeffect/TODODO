@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:TodoSampleMobile.Services.Behaviors;assembly=TodoSampleMobile.Services"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:converter="clr-namespace:TodoSampleMobile.Converter;assembly=TodoSampleMobile"
+             x:Class="TodoSampleMobile.Views.MainPage"
+             Appearing="ContentPage_Appearing">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:FontSizeConverter x:Key="FontConverter" ></converter:FontSizeConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid x:Name="ContatinerGrid" RowSpacing="0" ColumnSpacing="0"  Padding="0">
+        <Grid x:Name="MainGrid" RowSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ColumnSpacing="0"
+              Padding="0" BackgroundColor="#e4eaf4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="87*"/>
+            </Grid.RowDefinitions>
+            <Grid BackgroundColor="#47484b">
+                <Label TextColor="White" Text="Todos List" FontSize="{Binding Converter={StaticResource FontConverter},ConverterParameter=3}" HorizontalOptions="Center" FontAttributes="Bold"/>
+            </Grid>
+            
+            <Grid Grid.Row="1" Padding="3">
+                <Button HorizontalOptions="End" TextColor="White" Text="Add +" BackgroundColor="#ff006400" BorderRadius="80" Command="{Binding AddTodItemClickedCommand}"/>
+            </Grid>
+
+            <ListView Grid.Row="2" x:Name="MainList" ItemsSource="{Binding TodoItemsList}" ItemSelected="MainList_OnItemSelected"  BackgroundColor="Transparent" SeparatorVisibility="Default" RowHeight="130" SeparatorColor="Transparent">
+                   
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                            <Grid Padding="6,3,6,3">
+                                <Frame HasShadow="True" OutlineColor="#ff5f9ea0" BackgroundColor="#e0e0e0">
+                                    <Grid ColumnSpacing="0" RowSpacing="0" BackgroundColor="Transparent">
+                                    <Grid.RowDefinitions>
+                                        </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="80*"/>
+                                    </Grid.ColumnDefinitions>
+                                            <controls:CheckBox Grid.Column="0" Checked="{Binding Done}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+                                                <controls:CheckBox.Behaviors>
+                                                <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding BindingContext.DoneCheckBoxCheckedCommand, Source={x:Reference MainGrid}}" CommandParameter="{Binding .}"/>
+                                                </controls:CheckBox.Behaviors>
+                                            </controls:CheckBox>
+                                        <Grid Grid.Column="1" ColumnSpacing="0" RowSpacing="0" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="50*"/>
+                                                <RowDefinition Height="50*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="70*"/>
+                                                <ColumnDefinition Width="30*"/>
+                                            </Grid.ColumnDefinitions>
+                                        
+                                            <Label Grid.Row="0" Grid.Column="0"   Text="{Binding Title}"
+                                                   VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Start" TextColor="Black" 
+                                                   FontSize="{Binding Converter={StaticResource FontConverter}, ConverterParameter=4}" FontAttributes="Bold"/>
+                                            <Label Grid.Row="1" Grid.Column="0"  Text="{Binding Discription}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" TextColor="Black" LineBreakMode="TailTruncation"/>
+                                            <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="50*"/>
+                                                    <RowDefinition Height="50*"/>
+                                                </Grid.RowDefinitions>
+                                                <Button Grid.Row="0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" BackgroundColor="#fecd1a" Text="Edit" TextColor="White"
+                                                        Command="{Binding BindingContext.EditTodoItemClickedCommand, Source={x:Reference MainGrid}}" CommandParameter="{Binding .}" />
+                                                <Button Grid.Row="1" VerticalOptions="Center" HorizontalOptions="FillAndExpand" BackgroundColor="#a91921" 
+                                                        Command="{Binding BindingContext.DeleteTodoItemClickedCommand, Source={x:Reference MainGrid}}" CommandParameter="{Binding .}" Text="Delete" TextColor="White"  />
+                                            </Grid>
+                                       
+                                        </Grid>
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+                        </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+        </Grid>
+
+        <Grid x:Name="EditTodoGrid" RowSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ColumnSpacing="0"
+          Padding="0" BackgroundColor="#e0e0e0" IsVisible="{Binding EditGridVisibility,Mode=TwoWay}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="60*"/>
+                <ColumnDefinition Width="20*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="1" Grid.Column="1" FontAttributes="Bold" Text="Title" TextColor="Black"/>
+
+            <Entry Grid.Column="1"  BackgroundColor="White" Grid.Row="2" Text="{Binding Title}" TextColor="Black"/>
+            
+
+            <Label Grid.Row="3" Grid.Column="1" FontAttributes="Bold" Text="Discription" TextColor="Black"/>
+            <Editor  Grid.Column="1" Grid.Row="4" BackgroundColor="White"  Text="{Binding Discription}" TextColor="Black" />
+            <controls:CheckBox Grid.Column="1" Grid.Row="5" Checked="{Binding IsDone}" DefaultText="Is Done" TextColor="Black"/>
+            <Grid Grid.Column="1" Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="60*"/>
+                    <ColumnDefinition Width="20*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="50*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button BackgroundColor="#ff006400" Grid.Column="0" TextColor="White" HorizontalOptions="FillAndExpand" Text="Save" Command="{Binding SaveTodItemClickedCommand}"/>
+                    <Button BackgroundColor="#ff00008b" Grid.Column="1" TextColor="White" HorizontalOptions="FillAndExpand" Text="Cancel" Command="{Binding CancelClickedCommand}"/>
+                </Grid>
+                
+            </Grid>
+        </Grid>
+        <Grid x:Name="DeleteGrid" RowSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ColumnSpacing="0"
+              Padding="0" BackgroundColor="#e4eaf4" Opacity=".6" IsVisible="{Binding DeleteGridVisibility,Mode=TwoWay}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="40*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="30*"/>
+            </Grid.ColumnDefinitions>
+            
+        </Grid>
+        <Frame BackgroundColor="#e0e0e0" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding DeleteGridVisibility,Mode=TwoWay}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="50*"/>
+                </Grid.RowDefinitions>
+                <Label Text="Are your sure you want to delete this item ?" TextColor="Black"/>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="50*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button BackgroundColor="#ff8b0000" Text="Delete" Command="{Binding ConfirmDeleteTodItemClickedCommand}"/>
+                    <Button Grid.Column="1" BackgroundColor="#ff00008b" Text="Cancel" Command="{Binding CancelClickedCommand}"/>
+                </Grid>
+            </Grid>
+        </Frame>
+        <Grid x:Name="LoadingGrid" RowSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ColumnSpacing="0"
+              Padding="0" BackgroundColor="#e0e0e0" Opacity=".6" IsVisible="{Binding Loading,Mode=TwoWay}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="40*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="40*"/>
+            </Grid.ColumnDefinitions>
+            <ActivityIndicator Grid.Row="1" Grid.Column="1"  IsRunning="True"
+                               VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Color="#a31a21"/>
+        </Grid>
+
+        </Grid>
+</ContentPage>

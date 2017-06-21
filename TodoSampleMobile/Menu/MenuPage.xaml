@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:TodoSampleMobile.Services.Behaviors;assembly=TodoSampleMobile.Services"
+             xmlns:converter="clr-namespace:TodoSampleMobile.Converter;assembly=TodoSampleMobile"
+             x:Class="TodoSampleMobile.Views.MenuPage"
+             Title="Master">
+  <ContentPage.Resources>
+      <ResourceDictionary>
+       <converter:NotConverter x:Key="NotConverter" />
+          <converter:FontSizeConverter x:Key="FontConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="#fecd1a">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="77*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" RowSpacing="0" ColumnSpacing="0" Padding="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="97*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="68*" />
+                <RowDefinition Height="15*" />
+                <RowDefinition Height="15*" />
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" ColumnSpan="3" HorizontalOptions="Center" VerticalOptions="Center"  BackgroundColor="Black">
+                <Image Source="title.png" Aspect="AspectFit"/>
+            </Grid>
+            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Name}" FontSize="13" FontAttributes="Italic,Bold" TextColor="#e18799"
+                   HorizontalTextAlignment="Start"  VerticalTextAlignment="End"/>
+            <Label Grid.Row="2" Grid.Column="1" Text="{Binding Email}" FontSize="13" FontAttributes="Italic,Bold" TextColor="#e18799"
+                   HorizontalTextAlignment="Start" VerticalTextAlignment="Start" />
+        </Grid>
+
+        <Grid Row="2" Padding="0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="#e0e0e0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="12.5*" />
+                <RowDefinition Height="12.5*" />
+                <RowDefinition Height="12.5*" />
+                <RowDefinition Height="12.5*" />
+                <RowDefinition Height="12.5*" />
+                <RowDefinition Height="12.5*" />
+                <RowDefinition Height="12.5*" />
+                <RowDefinition Height="12.5*" />
+                <RowDefinition Height="12.5*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="60*" />
+                <ColumnDefinition Width="20*" />
+            </Grid.ColumnDefinitions>
+            <!-- first row updates-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15*" />
+                    <RowDefinition Height="70*" />
+                    <RowDefinition Height="15*" />
+                </Grid.RowDefinitions>
+                <Image Grid.Row="1" Grid.Column="0" Source="update.png" VerticalOptions="Center"
+                       HorizontalOptions="Center" Opacity=".6" />
+            </Grid>
+            <Label Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   Text="Updates" FontSize="{Binding Converter={StaticResource FontConverter},ConverterParameter=2}" FontAttributes="Bold"  TextColor="#47484b"/>
+            <Label Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   Text="2" FontSize="14" />
+            <Button Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" BackgroundColor="Transparent" BorderRadius="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Command="{Binding SendPushNotificationsCommand}" />
+            <!-- second row High periority-->
+            <Grid Grid.Column="0" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15*" />
+                    <RowDefinition Height="70*" />
+                    <RowDefinition Height="15*" />
+                </Grid.RowDefinitions>
+                <Image Grid.Row="1" Grid.Column="0" Source="highp.png" VerticalOptions="Center"
+                       HorizontalOptions="Center" Opacity=".6" />
+            </Grid>
+            <Label Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   Text="High Periority" FontSize="{Binding Converter={StaticResource FontConverter},ConverterParameter=2}" FontAttributes="Bold"  TextColor="#47484b"/>
+            <Grid Grid.Row="1" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15*" />
+                    <RowDefinition Height="70*" />
+                    <RowDefinition Height="15*" />
+                </Grid.RowDefinitions>
+                <Frame HorizontalOptions="Center" Grid.Row="1" VerticalOptions="Center" BackgroundColor="Red"
+                       HasShadow="False" />
+                <Label HorizontalTextAlignment="Center" Grid.Row="1" VerticalOptions="Center"
+                       VerticalTextAlignment="Center" Text="2" FontSize="14" TextColor="White" />
+            </Grid>
+            <!-- third row Low periority-->
+            <Grid Grid.Column="0" Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15*" />
+                    <RowDefinition Height="70*" />
+                    <RowDefinition Height="15*" />
+                </Grid.RowDefinitions>
+                <Image Grid.Row="1" Grid.Column="0" Source="lowp.png" VerticalOptions="Center"
+                       HorizontalOptions="Center" Opacity=".6" />
+            </Grid>
+            <Label Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   Text="Low Periority" FontSize="{Binding Converter={StaticResource FontConverter},ConverterParameter=2}" FontAttributes="Bold"  TextColor="#47484b"/>
+            <Grid Grid.Row="2" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15*" />
+                    <RowDefinition Height="70*" />
+                    <RowDefinition Height="15*" />
+                </Grid.RowDefinitions>
+                <Frame HorizontalOptions="Center" Grid.Row="1" VerticalOptions="Center" BackgroundColor="Green"
+                       HasShadow="False" />
+                <Label HorizontalTextAlignment="Center" Grid.Row="1" VerticalOptions="Center"
+                       VerticalTextAlignment="Center" Text="2" FontSize="{Binding Converter={StaticResource FontConverter},ConverterParameter=2}" FontAttributes="Bold"  TextColor="#47484b"/>
+            </Grid>
+
+            <!-- Fourth row my Todo-->
+            <Grid Grid.Column="0" Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15*" />
+                    <RowDefinition Height="70*" />
+                    <RowDefinition Height="15*" />
+                </Grid.RowDefinitions>
+                <Image Grid.Row="1" Grid.Column="0" Source="plans.png" VerticalOptions="Center"
+                       HorizontalOptions="Center" Opacity=".6" />
+            </Grid>
+            <Label Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   Text="My Todo List" FontSize="{Binding Converter={StaticResource FontConverter},ConverterParameter=2}" FontAttributes="Bold"  TextColor="#47484b"/>
+            <Grid Grid.Row="3" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15*" />
+                    <RowDefinition Height="70*" />
+                    <RowDefinition Height="15*" />
+                </Grid.RowDefinitions>
+                <Frame HorizontalOptions="Center" Grid.Row="1" VerticalOptions="Center" BackgroundColor="#c04c13"
+                       HasShadow="False" />
+                <Label HorizontalTextAlignment="Center" Grid.Row="1" VerticalOptions="Center"
+                       VerticalTextAlignment="Center" Text="2" FontSize="14" TextColor="White" />
+            </Grid>
+            <Button BackgroundColor="Transparent" Command="{Binding SyncCommand}" VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" />
+            <!-- Fifth row  Routs-->
+            <Grid Grid.Column="0" Grid.Row="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15*" />
+                    <RowDefinition Height="70*" />
+                    <RowDefinition Height="15*" />
+                </Grid.RowDefinitions>
+                <Image Grid.Row="1" Grid.Column="0" Source="routs.png" VerticalOptions="Center"
+                       HorizontalOptions="Center" Opacity=".6" />
+            </Grid>
+            <Label Grid.Row="4" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   Text="My Routs" FontSize="{Binding Converter={StaticResource FontConverter},ConverterParameter=2}" FontAttributes="Bold"  TextColor="#47484b"/>
+            <!-- Sixth row news-->
+            <Grid Grid.Column="0" Grid.Row="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15*" />
+                    <RowDefinition Height="70*" />
+                    <RowDefinition Height="15*" />
+                </Grid.RowDefinitions>
+                <Image Grid.Row="1" Grid.Column="0" Source="rss.png" VerticalOptions="Center"
+                       HorizontalOptions="Center" Opacity=".6" />
+            </Grid>
+            <Label Grid.Row="5" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   Text="News Feed" FontSize="{Binding Converter={StaticResource FontConverter},ConverterParameter=2}" FontAttributes="Bold"  TextColor="#47484b"/>
+            <Grid Grid.Row="5" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15*" />
+                    <RowDefinition Height="70*" />
+                    <RowDefinition Height="15*" />
+                </Grid.RowDefinitions>
+                <Frame HorizontalOptions="Center" Grid.Row="1" VerticalOptions="Center" BackgroundColor="#ffa500"
+                       HasShadow="False" />
+                <Label HorizontalTextAlignment="Center" Grid.Row="1" VerticalOptions="Center"
+                       VerticalTextAlignment="Center" Text="{Binding NewsCount}" FontSize="14" TextColor="White" />
+              
+            </Grid>
+             <Grid Grid.Row="5" Grid.Column="2" BackgroundColor="#fafafa" IsVisible="{Binding IsSyncNews}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15*" />
+                    <RowDefinition Height="70*" />
+                    <RowDefinition Height="15*" />
+                </Grid.RowDefinitions>
+                <ActivityIndicator Grid.Row="1" IsRunning="true" VerticalOptions="Center" Color="Gray" />
+            </Grid>
+            <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="Transparent" BorderRadius="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Command="{Binding GoToNewsCommand}" />
+            <!-- Seventh row start sync-->
+            <Grid Grid.Column="0" Grid.Row="6">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15*" />
+                    <RowDefinition Height="70*" />
+                    <RowDefinition Height="15*" />
+                </Grid.RowDefinitions>
+                <Image Grid.Row="1" Grid.Column="0" Source="sync.png" VerticalOptions="Center"
+                       HorizontalOptions="Center" Opacity=".6" />
+            </Grid>
+            <Label Grid.Row="6" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   Text="Start Syncing" FontSize="{Binding Converter={StaticResource FontConverter},ConverterParameter=2}" FontAttributes="Bold"  TextColor="#47484b"/>
+            <Grid Grid.Row="6" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15*" />
+                    <RowDefinition Height="70*" />
+                    <RowDefinition Height="15*" />
+                </Grid.RowDefinitions>
+                <ActivityIndicator Grid.Row="1" IsRunning="{Binding IsSyncing}" VerticalOptions="Center" Color="Gray" />
+            </Grid>
+            <Button BackgroundColor="Transparent" Command="{Binding SyncCommand}" VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" />
+            <!-- Eights row  Logout-->
+            <Grid Grid.Column="0" Grid.Row="7">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15*" />
+                    <RowDefinition Height="70*" />
+                    <RowDefinition Height="15*" />
+                </Grid.RowDefinitions>
+                <Image Grid.Row="1" Grid.Column="0" Source="logout.png" VerticalOptions="Center"
+                       HorizontalOptions="Center" Opacity=".6" />
+            </Grid>
+            <Label Grid.Row="7" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   Text="Log Out" FontSize="{Binding Converter={StaticResource FontConverter},ConverterParameter=2}" FontAttributes="Bold"  TextColor="#47484b"/>
+            <Button BackgroundColor="Transparent" Command="{Binding LogoutCommand}" VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" />
+        </Grid>
+    </Grid>
+</ContentPage>

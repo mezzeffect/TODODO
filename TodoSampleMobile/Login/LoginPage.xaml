@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoSampleMobile.Login.LoginPage">
+
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" ColumnSpacing="0" RowSpacing="0"
+          BackgroundColor="#e0e0e0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="12*" />
+        </Grid.RowDefinitions>
+        <!-- header-->
+        <Grid Grid.Row="1" ColumnSpacing="0" RowSpacing="0" Padding="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="80*" />
+                <ColumnDefinition Width="10*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1" ColumnSpacing="0" RowSpacing="0" Padding="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*" />
+                    <ColumnDefinition Width="70*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70*"/>
+                    <RowDefinition Height="30*"/>
+                </Grid.RowDefinitions>
+                <Image Source="title.png" Grid.ColumnSpan="2" Grid.Column="0" HorizontalOptions="Center" Aspect="AspectFit" />
+                <StackLayout Grid.Row="1"  Grid.Column="1" Padding="0" Orientation="Horizontal">
+                    <Label Text="Todo" FontSize="30" VerticalOptions="Center" HorizontalOptions="Start"
+                           TextColor="#706749" FontAttributes="Bold" />
+                    <Label Text="App" FontSize="30" VerticalOptions="Center" HorizontalOptions="Start"
+                           TextColor="Black" />
+                </StackLayout>
+            </Grid>
+
+        </Grid>
+        <Entry Placeholder="HOOOO"></Entry>
+
+        <!--body-->
+        <Grid Grid.Row="3" ColumnSpacing="0" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15*" />
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="15*" />
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="15*" />
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="15*" />
+                <RowDefinition Height="28*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="80*" />
+                <ColumnDefinition Width="10*" />
+            </Grid.ColumnDefinitions>
+           
+            <Grid Grid.Row="0" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                  RowSpacing="0" ColumnSpacing="0" Padding="0" BackgroundColor="Transparent">
+                <Entry VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                        BackgroundColor="Transparent"
+                        Text="{Binding UserName,Mode=TwoWay}" Placeholder="User Name"  IsEnabled="True"  TextColor="Black"/>
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                  RowSpacing="0" ColumnSpacing="0" Padding="0" BackgroundColor="Transparent">
+                <Entry VerticalOptions="FillAndExpand" IsEnabled="True" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" TextColor="White" 
+                       Text="{Binding Password,Mode=TwoWay}" Placeholder="Password" IsPassword="True"/>
+            </Grid>
+            <Grid Grid.Row="4" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                  RowSpacing="0" ColumnSpacing="0" Padding="0">
+                <Button VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                        Command="{Binding LoginCommand}" BackgroundColor="#585858"
+                        Text="Login" IsEnabled="{Binding IsEnabled}" TextColor="White" />
+            </Grid>
+            <Grid Grid.Row="6" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                  RowSpacing="0" ColumnSpacing="0" Padding="0">
+                
+            </Grid>
+            <Grid Grid.Row="0" Grid.RowSpan="8" Grid.Column="1" BackgroundColor="#e0e0e0" IsVisible="{Binding IsIndicatorRunning}">
+              <Grid.RowDefinitions>
+                  <RowDefinition Height="40*"/>
+                  <RowDefinition Height="20*"/>
+                  <RowDefinition Height="40*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="40*"/>
+                </Grid.ColumnDefinitions>
+                <ActivityIndicator Grid.Row="1" Grid.Column="1"  IsRunning="True"
+                               VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Color="#a31a21"/>
+            </Grid>
+        </Grid>
+      <!--footer-->
+      <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="4">
+        <Label Text="TODODO, copyright © TODODO inc" FontSize="11" VerticalOptions="Center" HorizontalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="#2c84d2"/>
+      </Grid>
+    </Grid>
+</ContentPage>
